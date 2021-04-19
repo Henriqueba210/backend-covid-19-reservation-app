@@ -5,5 +5,20 @@
   },
   "typescript.tsdk": ".yarn/sdks/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  "eslint.nodePath": ".yarn/sdks"
+  "eslint.nodePath": ".yarn/sdks",
+  "sqltools.connections": [
+    {
+      "mysqlOptions": {
+        "authProtocol": "default"
+      },
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 3306,
+      "driver": "MySQL",
+      "name": "mysql-reservation-app",
+      "database": "reservation_app",
+      "username": "backend",
+      "password": "1234"
+    }
+  ]
 }
