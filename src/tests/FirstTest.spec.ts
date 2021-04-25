@@ -1,7 +1,8 @@
-import { User } from '@models/User'
+import { Cliente } from '@models/Cliente'
 
 test('Should run', () => {
-  const user = new User('henrique', 'henrique@gmail.com')
+  const user = new Cliente()
+  user.nome = 'henrique'
 
-  expect(user.name).toBe('henrique')
+  expect(user.nome).toBe('henrique')
 })

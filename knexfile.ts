@@ -1,5 +1,6 @@
 // Update with your config settings.
 require('ts-node/register')
+const path = require('path')
 
 module.exports = {
 
@@ -12,8 +13,10 @@ module.exports = {
     },
     migrations: {
       tableName: 'reservation_app_migrations',
-      // eslint-disable-next-line node/no-path-concat
-      directory: `${__dirname}/src/database/migrations`
+      directory: path.join('src/database/migrations')
+    },
+    seeds: {
+      directory: path.join('src/database/seeds')
     }
   }
 }
