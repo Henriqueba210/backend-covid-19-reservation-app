@@ -1,6 +1,7 @@
 import { Model } from 'objection'
+import { ICliente } from '../models/ICliente'
 
-export class Cliente extends Model {
+export default class ClienteService extends Model implements ICliente {
   static get tableName (): string {
     return 'cliente'
   }

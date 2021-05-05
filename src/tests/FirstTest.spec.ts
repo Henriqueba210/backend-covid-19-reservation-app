@@ -1,7 +1,7 @@
-import { Cliente } from '@models/Cliente'
+import ClienteService from 'src/services/ClienteService'
 
 test('Should run', () => {
-  const user = new Cliente()
+  const user = new ClienteService()
   user.nome = 'henrique'
 
   expect(user.nome).toBe('henrique')
