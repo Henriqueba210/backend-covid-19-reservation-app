@@ -1,6 +1,6 @@
 import { Knex } from 'knex'
 
-export async function seed (knex: Knex): Promise<void> {
+exports.seed = async (knex: Knex) => {
   // Deletes ALL existing entries
   await knex('cliente').del()
 
@@ -8,4 +8,4 @@ export async function seed (knex: Knex): Promise<void> {
   await knex('cliente').insert([
     { nome: 'Henrique Barros de Almeida', idade: 19, email: 'teste@example.com', senha: 1234, telefone: '19987456321' }
   ])
-};
+}
