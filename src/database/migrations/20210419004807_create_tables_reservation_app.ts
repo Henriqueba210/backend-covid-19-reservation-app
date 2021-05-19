@@ -19,8 +19,8 @@ exports.up = (knex: Knex) => {
       table.string('bairro', 100).notNullable()
       table.string('cidade', 100).notNullable()
       table.string('uf', 2).notNullable()
-      table.dateTime('hora_abertura').notNullable()
-      table.string('descricao')
+      table.string('pais', 30).notNullable()
+      table.string('cep', 8).notNullable()
 
       table.timestamp('created_at').defaultTo(knex.fn.now())
       table.timestamp('updated_at').defaultTo(knex.fn.now())

@@ -6,6 +6,48 @@
 		"requestBodies": {},
 		"responses": {},
 		"schemas": {
+			"IAvaliacao": {
+				"properties": {
+					"idAvaliacao": {
+						"type": "number",
+						"format": "double"
+					},
+					"idCliente": {
+						"type": "number",
+						"format": "double"
+					},
+					"idEstabelecimento": {
+						"type": "number",
+						"format": "double"
+					},
+					"quantidadeReservas": {
+						"type": "number",
+						"format": "double"
+					},
+					"quantidadeCancelamentos": {
+						"type": "string"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updatedAt": {
+						"type": "string",
+						"format": "date-time"
+					}
+				},
+				"required": [
+					"idAvaliacao",
+					"idCliente",
+					"idEstabelecimento",
+					"quantidadeReservas",
+					"quantidadeCancelamentos",
+					"createdAt",
+					"updatedAt"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"ICliente": {
 				"properties": {
 					"idCliente": {
@@ -43,6 +85,110 @@
 				],
 				"type": "object",
 				"additionalProperties": false
+			},
+			"IEndereco": {
+				"properties": {
+					"idEndereco": {
+						"type": "number",
+						"format": "double"
+					},
+					"endereco": {
+						"type": "string"
+					},
+					"numero": {
+						"type": "string"
+					},
+					"bairro": {
+						"type": "string"
+					},
+					"cidade": {
+						"type": "string"
+					},
+					"uf": {
+						"type": "string"
+					},
+					"pais": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"cep": {
+						"type": "string"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updatedAt": {
+						"type": "string",
+						"format": "date-time"
+					}
+				},
+				"required": [
+					"idEndereco",
+					"endereco",
+					"numero",
+					"bairro",
+					"cidade",
+					"uf",
+					"pais",
+					"cep",
+					"createdAt",
+					"updatedAt"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"IEstabelecimento": {
+				"properties": {
+					"idEstabelecimento": {
+						"type": "number",
+						"format": "double"
+					},
+					"idEndereco": {
+						"type": "number",
+						"format": "double"
+					},
+					"cnpj": {
+						"type": "string"
+					},
+					"senha": {
+						"type": "string"
+					},
+					"telefone": {
+						"type": "string"
+					},
+					"lotacao": {
+						"type": "string"
+					},
+					"horaAbertura": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"descricao": {
+						"type": "string"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updatedAt": {
+						"type": "string",
+						"format": "date-time"
+					}
+				},
+				"required": [
+					"idEstabelecimento",
+					"idEndereco",
+					"cnpj",
+					"senha",
+					"telefone",
+					"lotacao",
+					"horaAbertura",
+					"createdAt",
+					"updatedAt"
+				],
+				"type": "object",
+				"additionalProperties": false
 			}
 		},
 		"securitySchemes": {}
@@ -53,6 +199,101 @@
 	},
 	"openapi": "3.0.0",
 	"paths": {
+		"/avaliacoes": {
+			"post": {
+				"operationId": "CriarAvaliacao",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IAvaliacao"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Avaliacoes"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IAvaliacao"
+							}
+						}
+					}
+				}
+			},
+			"put": {
+				"operationId": "AtualizarAvaliacao",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IAvaliacao"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Avaliacoes"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IAvaliacao"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/avaliacoes/{avaliacaoID}": {
+			"delete": {
+				"operationId": "DeletarAvaliacao",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "number",
+									"format": "double"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Avaliacoes"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "avaliacaoID",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
 		"/clientes": {
 			"get": {
 				"operationId": "Index",
@@ -71,11 +312,14 @@
 						}
 					}
 				},
+				"tags": [
+					"Clientes"
+				],
 				"security": [],
 				"parameters": []
 			},
 			"post": {
-				"operationId": "CreateClient",
+				"operationId": "CriarCliente",
 				"responses": {
 					"200": {
 						"description": "Ok",
@@ -88,6 +332,9 @@
 						}
 					}
 				},
+				"tags": [
+					"Clientes"
+				],
 				"security": [],
 				"parameters": [],
 				"requestBody": {
@@ -102,7 +349,7 @@
 				}
 			},
 			"put": {
-				"operationId": "UpdateClient",
+				"operationId": "AtualizarClietne",
 				"responses": {
 					"200": {
 						"description": "Ok",
@@ -115,6 +362,9 @@
 						}
 					}
 				},
+				"tags": [
+					"Clientes"
+				],
 				"security": [],
 				"parameters": [],
 				"requestBody": {
@@ -145,11 +395,250 @@
 						}
 					}
 				},
+				"tags": [
+					"Clientes"
+				],
 				"security": [],
 				"parameters": [
 					{
 						"in": "path",
 						"name": "clienteID",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/enderecos": {
+			"get": {
+				"operationId": "Index",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/IEndereco"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Enderecos"
+				],
+				"security": [],
+				"parameters": []
+			},
+			"post": {
+				"operationId": "CriarEndereco",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IEndereco"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Enderecos"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IEndereco"
+							}
+						}
+					}
+				}
+			},
+			"put": {
+				"operationId": "AtualizarEndereco",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IEndereco"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Enderecos"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IEndereco"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/enderecos/{enderecoID}": {
+			"delete": {
+				"operationId": "DeletarCliente",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "number",
+									"format": "double"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Enderecos"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "enderecoID",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/estabelecimentos": {
+			"get": {
+				"operationId": "Index",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/IEstabelecimento"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Estabelecimentos"
+				],
+				"security": [],
+				"parameters": []
+			},
+			"post": {
+				"operationId": "CriarEstabelecimento",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IEstabelecimento"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Estabelecimentos"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IEstabelecimento"
+							}
+						}
+					}
+				}
+			},
+			"put": {
+				"operationId": "AtualizarEstabelecimento",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IEstabelecimento"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Estabelecimentos"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IEstabelecimento"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/estabelecimentos/{estabelecimentoID}": {
+			"delete": {
+				"operationId": "DeletarEstabelecimento",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "number",
+									"format": "double"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Estabelecimentos"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "estabelecimentoID",
 						"required": true,
 						"schema": {
 							"format": "double",

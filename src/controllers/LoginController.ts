@@ -1,9 +1,10 @@
 import { ICliente } from '../models/ICliente'
 import { Request, Response } from 'express'
 import ClienteService from 'src/services/ClienteService'
-import { Route, Controller } from '@tsoa/runtime'
+import { Route, Controller, Tags } from '@tsoa/runtime'
 
 @Route('/login')
+@Tags('Login')
 export class LoginController extends Controller {
   @Route('/usuario')
   async clienteLogin (request: Request<{email: string, senha: string}>, response: Response): Promise<ICliente> {

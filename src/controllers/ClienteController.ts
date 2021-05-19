@@ -1,8 +1,9 @@
-import { ICliente } from '../models/ICliente'
 import ClienteService from 'src/services/ClienteService'
-import { Body, Controller, Delete, Get, Path, Post, Put, Route } from '@tsoa/runtime'
+import { Body, Controller, Delete, Get, Path, Post, Put, Route, Tags } from '@tsoa/runtime'
+import { ICliente } from '@models/ICliente'
 
 @Route('clientes')
+@Tags('Clientes')
 export class ClienteController extends Controller {
   @Get('/')
   async index (): Promise<ICliente[]> {
@@ -11,12 +12,12 @@ export class ClienteController extends Controller {
   }
 
   @Post('/')
-  async createClient (@Body() requestBody: ICliente): Promise<ICliente> {
+  async criarCliente (@Body() requestBody: ICliente): Promise<ICliente> {
     return ClienteService.query().insert(requestBody)
   }
 
   @Put('/')
-  async updateClient (@Body() requestBody: ICliente): Promise<ICliente> {
+  async atualizarClietne (@Body() requestBody: ICliente): Promise<ICliente> {
     return ClienteService.query().updateAndFetch(requestBody)
   }
 
