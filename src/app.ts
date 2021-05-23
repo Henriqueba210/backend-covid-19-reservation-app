@@ -1,17 +1,19 @@
 import bodyParser from 'body-parser'
 import cors from 'cors'
-import express, { Request, Response } from 'express'
+import express, { NextFunction, Request, Response } from 'express'
 import { Model } from 'objection'
 import { RegisterRoutes } from './routes/routes'
 import swaggerUi from 'swagger-ui-express'
+import objectionErrorHandler from './utils/objectionErrorHandler'
+import tsoaErrorHandler from './utils/tsoaErrorHandler'
 class App {
     public express: express.Application
 
     public constructor () {
       this.express = express()
-      this.middlewares()
       this.routes()
       this.database()
+      this.middlewares()
     }
 
     private middlewares (): void {
@@ -26,6 +28,12 @@ class App {
         return _res.send(
           swaggerUi.generateHTML(await import('./swagger/swagger.json'))
         )
+      })
+      this.express.use((err: any, _req: Request, res: Response, _next: NextFunction) => {
+        objectionErrorHandler(err, res)
+      })
+      this.express.use((err: any, req: Request, res: Response, next: NextFunction) => {
+        tsoaErrorHandler(err, req, res, next)
       })
     }
 

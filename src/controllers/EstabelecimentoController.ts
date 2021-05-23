@@ -1,13 +1,16 @@
 import EstabelecimentoService from 'src/services/EstabelecimentoService'
-import { Body, Controller, Delete, Get, Path, Post, Put, Route, Tags } from '@tsoa/runtime'
+import { Body, Controller, Delete, Get, Path, Post, Put, Query, Route, Tags } from '@tsoa/runtime'
 import { IEstabelecimento } from '@models/IEstabelecimento'
 
 @Route('estabelecimentos')
 @Tags('Estabelecimentos')
 export class EstablecimentoController extends Controller {
   @Get('/')
-  async index (): Promise<IEstabelecimento[]> {
-    const estabelecimentos: IEstabelecimento[] = await EstabelecimentoService.query()
+  async index (@Query() cidade: string, @Query() estado: string): Promise<IEstabelecimento[]> {
+    const estabelecimentos: IEstabelecimento[] =
+      await EstabelecimentoService.relatedQuery('endereco')
+        .where('endereco.cidade', cidade)
+
     return estabelecimentos
   }
 

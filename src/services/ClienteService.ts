@@ -1,7 +1,7 @@
 import { ICliente } from '@models/ICliente'
-import { Model } from 'objection'
+import BaseService from './BaseService'
 
-export default class ClienteService extends Model implements ICliente {
+export default class ClienteService extends BaseService implements ICliente {
   idCliente!: number
   nome!: string
   email!: string

@@ -1,7 +1,7 @@
-import { Model } from 'objection'
 import { IAvaliacao } from 'src/models/IAvaliacao'
+import BaseService from './BaseService'
 
-export default class AvaliacaoService extends Model implements IAvaliacao {
+export default class AvaliacaoService extends BaseService implements IAvaliacao {
   idAvaliacao!: number
   idCliente!: number
   idEstabelecimento!: number

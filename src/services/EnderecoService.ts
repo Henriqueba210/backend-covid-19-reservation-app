@@ -1,7 +1,7 @@
 import { IEndereco } from '@models/IEnderenco'
-import { Model } from 'objection'
+import BaseService from './BaseService'
 
-export default class EnderecoService extends Model implements IEndereco {
+export default class EnderecoService extends BaseService implements IEndereco {
   idEndereco!: number
   endereco!: string
   numero!: string

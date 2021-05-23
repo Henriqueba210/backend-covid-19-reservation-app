@@ -12,6 +12,8 @@ import { EnderecoController } from './../controllers/EnderecoController';
 import { EstablecimentoController } from './../controllers/EstabelecimentoController';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { LoginController } from './../controllers/LoginController';
+// WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+import { ReservaController } from './../controllers/ReservaController';
 import * as express from 'express';
 
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
@@ -67,6 +69,7 @@ const models: TsoaRoute.Models = {
         "properties": {
             "idEstabelecimento": {"dataType":"double","required":true},
             "idEndereco": {"dataType":"double","required":true},
+            "endereco": {"ref":"IEndereco","required":true},
             "cnpj": {"dataType":"string","required":true},
             "senha": {"dataType":"string","required":true},
             "telefone": {"dataType":"string","required":true},
@@ -75,6 +78,21 @@ const models: TsoaRoute.Models = {
             "descricao": {"dataType":"string"},
             "createdAt": {"dataType":"datetime","required":true},
             "updatedAt": {"dataType":"datetime","required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "IReserva": {
+        "dataType": "refObject",
+        "properties": {
+            "idReserva": {"dataType":"double","required":true},
+            "idCliente": {"dataType":"double","required":true},
+            "idEstabelecimento": {"dataType":"double","required":true},
+            "valor": {"dataType":"string","required":true},
+            "dataReserva": {"dataType":"string","required":true},
+            "horaInicio": {"dataType":"string","required":true},
+            "horaFim": {"dataType":"datetime","required":true},
+            "qtdPessoas": {"dataType":"string","required":true},
         },
         "additionalProperties": false,
     },
@@ -413,6 +431,118 @@ export function RegisterRoutes(app: express.Router) {
 
 
             const promise = controller.deletarEstabelecimento.apply(controller, validatedArgs as any);
+            promiseHandler(controller, promise, response, undefined, next);
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.get('/reservas/cliente/:clienteID',
+            function ReservaController_getReservasByClienteID(request: any, response: any, next: any) {
+            const args = {
+                    clienteID: {"in":"path","name":"clienteID","required":true,"dataType":"string"},
+                    dataPesquisa: {"in":"query","name":"dataPesquisa","dataType":"datetime"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+            } catch (err) {
+                return next(err);
+            }
+
+            const controller = new ReservaController();
+
+
+            const promise = controller.getReservasByClienteID.apply(controller, validatedArgs as any);
+            promiseHandler(controller, promise, response, undefined, next);
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.get('/reservas/estabelecimento/:estabelecimentoID',
+            function ReservaController_getReservasByEstabelecimentoID(request: any, response: any, next: any) {
+            const args = {
+                    estabelecimentoID: {"in":"path","name":"estabelecimentoID","required":true,"dataType":"string"},
+                    dataPesquisa: {"in":"query","name":"dataPesquisa","dataType":"datetime"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+            } catch (err) {
+                return next(err);
+            }
+
+            const controller = new ReservaController();
+
+
+            const promise = controller.getReservasByEstabelecimentoID.apply(controller, validatedArgs as any);
+            promiseHandler(controller, promise, response, undefined, next);
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.post('/reservas',
+            function ReservaController_criarReserva(request: any, response: any, next: any) {
+            const args = {
+                    requestBody: {"in":"body","name":"requestBody","required":true,"ref":"IReserva"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+            } catch (err) {
+                return next(err);
+            }
+
+            const controller = new ReservaController();
+
+
+            const promise = controller.criarReserva.apply(controller, validatedArgs as any);
+            promiseHandler(controller, promise, response, undefined, next);
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.put('/reservas',
+            function ReservaController_atualizarReserva(request: any, response: any, next: any) {
+            const args = {
+                    requestBody: {"in":"body","name":"requestBody","required":true,"ref":"IReserva"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+            } catch (err) {
+                return next(err);
+            }
+
+            const controller = new ReservaController();
+
+
+            const promise = controller.atualizarReserva.apply(controller, validatedArgs as any);
+            promiseHandler(controller, promise, response, undefined, next);
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.delete('/reservas/:reservaID',
+            function ReservaController_deletarReserva(request: any, response: any, next: any) {
+            const args = {
+                    reservaID: {"in":"path","name":"reservaID","required":true,"dataType":"double"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+            } catch (err) {
+                return next(err);
+            }
+
+            const controller = new ReservaController();
+
+
+            const promise = controller.deletarReserva.apply(controller, validatedArgs as any);
             promiseHandler(controller, promise, response, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa

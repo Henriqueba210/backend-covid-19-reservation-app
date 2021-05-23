@@ -1,7 +1,7 @@
 import { IReserva } from '@models/IReserva'
-import { Model } from 'objection'
+import BaseService from './BaseService'
 
-export default class ReservaService extends Model implements IReserva {
+export default class ReservaService extends BaseService implements IReserva {
   idReserva!: number
   idCliente!: number
   idEstabelecimento!: number

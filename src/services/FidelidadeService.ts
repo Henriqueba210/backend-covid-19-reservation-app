@@ -1,7 +1,7 @@
 import { IFidelidade } from '@models/IFidelidade'
-import { Model } from 'objection'
+import BaseService from './BaseService'
 
-export default class FidelidadeService extends Model implements IFidelidade {
+export default class FidelidadeService extends BaseService implements IFidelidade {
   idFidelidade!: number
   idCliente!: number
   idEstabelecimento!: number
