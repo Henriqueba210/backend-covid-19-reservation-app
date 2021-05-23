@@ -1,7 +1,7 @@
-import { Knex } from 'knex'
+import Knex, { TableBuilder } from 'knex'
 
 exports.up = (knex: Knex) => {
-  return knex.schema.createTable('cliente', (table) => {
+  return knex.schema.createTable('cliente', (table: TableBuilder) => {
     table.increments('id_cliente')
     table.string('nome', 50).notNullable()
     table.integer('idade', 3).notNullable()
@@ -12,7 +12,7 @@ exports.up = (knex: Knex) => {
     table.timestamp('created_at').defaultTo(knex.fn.now())
     table.timestamp('updated_at').defaultTo(knex.fn.now())
   })
-    .createTable('endereco', (table) => {
+    .createTable('endereco', (table: TableBuilder) => {
       table.increments('id_endereco')
       table.string('endereco', 100).notNullable()
       table.string('numero', 10).notNullable()
@@ -25,7 +25,7 @@ exports.up = (knex: Knex) => {
       table.timestamp('created_at').defaultTo(knex.fn.now())
       table.timestamp('updated_at').defaultTo(knex.fn.now())
     })
-    .createTable('estabelecimento', (table) => {
+    .createTable('estabelecimento', (table: TableBuilder) => {
       table.increments('id_estabelecimento')
       table.integer('id_endereco').unsigned().notNullable()
       table.string('email', 30).notNullable()
@@ -40,7 +40,7 @@ exports.up = (knex: Knex) => {
 
       table.foreign('id_endereco').references('id_endereco').inTable('endereco')
     })
-    .createTable('reserva', (table) => {
+    .createTable('reserva', (table: TableBuilder) => {
       table.increments('id_reserva')
       table.integer('id_cliente').unsigned().notNullable()
       table.integer('id_estabelecimento').unsigned().notNullable()
@@ -57,7 +57,7 @@ exports.up = (knex: Knex) => {
       table.foreign('id_cliente').references('id_cliente').inTable('cliente')
       table.foreign('id_estabelecimento').references('id_estabelecimento').inTable('estabelecimento')
     })
-    .createTable('fidelidade', (table) => {
+    .createTable('fidelidade', (table: TableBuilder) => {
       table.increments('id_fidelidade')
       table.integer('id_cliente').unsigned().notNullable()
       table.integer('id_estabelecimento').unsigned().notNullable()
@@ -70,7 +70,7 @@ exports.up = (knex: Knex) => {
       table.foreign('id_cliente').references('id_cliente').inTable('cliente')
       table.foreign('id_estabelecimento').references('id_estabelecimento').inTable('estabelecimento')
     })
-    .createTable('avaliacao', (table) => {
+    .createTable('avaliacao', (table: TableBuilder) => {
       table.increments('id_avaliacao')
       table.integer('id_cliente').unsigned().notNullable()
       table.integer('id_estabelecimento').unsigned().notNullable()
