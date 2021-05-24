@@ -22,7 +22,13 @@ export class EnderecoController extends Controller {
   }
 
   @Delete('/{enderecoID}')
-  async deletarCliente (@Path() enderecoID: number) : Promise<number> {
-    return EnderecoService.query().deleteById(enderecoID)
+  async deletarCliente (@Path() enderecoID: number) : Promise<string> {
+    const linhasAfetadas = await EnderecoService.query().deleteById(enderecoID)
+    if (linhasAfetadas > 0) {
+      return 'Endereco deletado com sucesso'
+    } else {
+      this.setStatus(404)
+      return 'Endereco não encontrado'
+    }
   }
 }

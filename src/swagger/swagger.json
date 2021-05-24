@@ -60,9 +60,6 @@
 					"email": {
 						"type": "string"
 					},
-					"senha": {
-						"type": "string"
-					},
 					"telefone": {
 						"type": "string"
 					},
@@ -79,7 +76,6 @@
 					"idCliente",
 					"nome",
 					"email",
-					"senha",
 					"createdAt",
 					"updatedAt"
 				],
@@ -194,6 +190,48 @@
 				"type": "object",
 				"additionalProperties": false
 			},
+			"IFidelidade": {
+				"properties": {
+					"idFidelidade": {
+						"type": "number",
+						"format": "double"
+					},
+					"idCliente": {
+						"type": "number",
+						"format": "double"
+					},
+					"idEstabelecimento": {
+						"type": "number",
+						"format": "double"
+					},
+					"quantidadeReservas": {
+						"type": "number",
+						"format": "double"
+					},
+					"quantidadeCancelamentos": {
+						"type": "string"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updatedAt": {
+						"type": "string",
+						"format": "date-time"
+					}
+				},
+				"required": [
+					"idFidelidade",
+					"idCliente",
+					"idEstabelecimento",
+					"quantidadeReservas",
+					"quantidadeCancelamentos",
+					"createdAt",
+					"updatedAt"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"IReserva": {
 				"properties": {
 					"idReserva": {
@@ -212,10 +250,12 @@
 						"type": "string"
 					},
 					"dataReserva": {
-						"type": "string"
+						"type": "string",
+						"format": "date-time"
 					},
 					"horaInicio": {
-						"type": "string"
+						"type": "string",
+						"format": "date-time"
 					},
 					"horaFim": {
 						"type": "string",
@@ -247,6 +287,40 @@
 	},
 	"openapi": "3.0.0",
 	"paths": {
+		"/avaliacoes/{estabelecimentoID}": {
+			"get": {
+				"operationId": "GetAvaliacaoEstabelecimento",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/IAvaliacao"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Avaliacoes"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "estabelecimentoID",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
+			}
+		},
 		"/avaliacoes": {
 			"post": {
 				"operationId": "CriarAvaliacao",
@@ -600,7 +674,24 @@
 					"Estabelecimentos"
 				],
 				"security": [],
-				"parameters": []
+				"parameters": [
+					{
+						"in": "query",
+						"name": "cidade",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					},
+					{
+						"in": "query",
+						"name": "uf",
+						"required": true,
+						"schema": {
+							"type": "string"
+						}
+					}
+				]
 			},
 			"post": {
 				"operationId": "CriarEstabelecimento",
@@ -687,6 +778,113 @@
 					{
 						"in": "path",
 						"name": "estabelecimentoID",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/fidelidade": {
+			"get": {
+				"operationId": "Index",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/IFidelidade"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Fidelidade"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "query",
+						"name": "idEstabelecimento",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					},
+					{
+						"in": "query",
+						"name": "idCliente",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			},
+			"put": {
+				"operationId": "AtualizarFidelidade",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/IFidelidade"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Fidelidade"
+				],
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/IFidelidade"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/fidelidade/{FidelidadeID}": {
+			"delete": {
+				"operationId": "DeletarFidelidade",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"type": "number",
+									"format": "double"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Fidelidade"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "FidelidadeID",
 						"required": true,
 						"schema": {
 							"format": "double",

@@ -1,8 +1,9 @@
 import { IEndereco } from '@models/IEnderenco'
 import { IEstabelecimento } from '@models/IEstabelecimento'
 import { Model } from 'objection'
+import BaseService from './BaseService'
 
-export default class EstabelecimentoService extends Model implements IEstabelecimento {
+export default class EstabelecimentoService extends BaseService implements IEstabelecimento {
   idEstabelecimento!: number
   idEndereco!: number
   endereco!: IEndereco
@@ -21,7 +22,7 @@ export default class EstabelecimentoService extends Model implements IEstabeleci
 
   static get relationMappings () {
     return {
-      enderecoEstabelecimento: {
+      endereco: {
         relation: Model.HasOneRelation,
         modelClass: 'EnderecoService',
         join: {

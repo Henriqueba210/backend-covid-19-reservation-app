@@ -13,16 +13,22 @@ export class ClienteController extends Controller {
 
   @Post('/')
   async criarCliente (@Body() requestBody: ICliente): Promise<ICliente> {
-    return ClienteService.query().insert(requestBody)
+    return await ClienteService.query().insert(requestBody)
   }
 
   @Put('/')
   async atualizarClietne (@Body() requestBody: ICliente): Promise<ICliente> {
-    return ClienteService.query().updateAndFetch(requestBody)
+    return await ClienteService.query().updateAndFetch(requestBody)
   }
 
   @Delete('/{clienteID}')
-  async deleteClient (@Path() clienteID: number) : Promise<number> {
-    return ClienteService.query().deleteById(clienteID)
+  async deleteClient (@Path() clienteID: number) : Promise<string> {
+    const linhasAfetadas = await ClienteService.query().deleteById(clienteID)
+    if (linhasAfetadas > 0) {
+      return 'Cliente deletado com sucesso'
+    } else {
+      this.setStatus(404)
+      return 'Cliente não encontrado'
+    }
   }
 }

@@ -6,8 +6,8 @@ export interface IReserva {
   idCliente: number
   idEstabelecimento: number
   valor: string
-  dataReserva: string
-  horaInicio: string
+  dataReserva: Date
+  horaInicio: Date
   horaFim: Date
   qtdPessoas: string
 }

@@ -6,26 +6,33 @@ import { IEstabelecimento } from '@models/IEstabelecimento'
 @Tags('Estabelecimentos')
 export class EstablecimentoController extends Controller {
   @Get('/')
-  async index (@Query() cidade: string, @Query() estado: string): Promise<IEstabelecimento[]> {
-    const estabelecimentos: IEstabelecimento[] =
-      await EstabelecimentoService.relatedQuery('endereco')
-        .where('endereco.cidade', cidade)
+  async index (@Query() cidade: string, @Query() uf: string): Promise<IEstabelecimento[]> {
+    const estabelecimentos: IEstabelecimento[] = await EstabelecimentoService.query()
+      .where('endereco.cidade', cidade)
+      .where('endereco.uf', 'uf')
+      .joinRelated('endereco')
 
     return estabelecimentos
   }
 
   @Post('/')
   async criarEstabelecimento (@Body() requestBody: IEstabelecimento): Promise<IEstabelecimento> {
-    return EstabelecimentoService.query().insert(requestBody)
+    return EstabelecimentoService.query().insertGraphAndFetch(requestBody)
   }
 
   @Put('/')
   async atualizarEstabelecimento (@Body() requestBody: IEstabelecimento): Promise<IEstabelecimento> {
-    return EstabelecimentoService.query().updateAndFetch(requestBody)
+    return EstabelecimentoService.query().upsertGraphAndFetch(requestBody)
   }
 
   @Delete('/{estabelecimentoID}')
-  async deletarEstabelecimento (@Path() estabelecimentoID: number) : Promise<number> {
-    return EstabelecimentoService.query().deleteById(estabelecimentoID)
+  async deletarEstabelecimento (@Path() estabelecimentoID: number) : Promise<string> {
+    const linhasAfetadas = await EstabelecimentoService.query().deleteById(estabelecimentoID)
+    if (linhasAfetadas > 0) {
+      return 'Estabelecimento deletado com sucesso'
+    } else {
+      this.setStatus(404)
+      return 'Estabelecimento não encontrado'
+    }
   }
 }

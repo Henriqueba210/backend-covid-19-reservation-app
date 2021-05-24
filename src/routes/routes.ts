@@ -11,6 +11,8 @@ import { EnderecoController } from './../controllers/EnderecoController';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { EstablecimentoController } from './../controllers/EstabelecimentoController';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+import { FidelidadeController } from './../controllers/FidelidadeController';
+// WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { LoginController } from './../controllers/LoginController';
 // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
 import { ReservaController } from './../controllers/ReservaController';
@@ -39,7 +41,6 @@ const models: TsoaRoute.Models = {
             "idCliente": {"dataType":"double","required":true},
             "nome": {"dataType":"string","required":true},
             "email": {"dataType":"string","required":true},
-            "senha": {"dataType":"string","required":true},
             "telefone": {"dataType":"string"},
             "createdAt": {"dataType":"datetime","required":true},
             "updatedAt": {"dataType":"datetime","required":true},
@@ -82,6 +83,20 @@ const models: TsoaRoute.Models = {
         "additionalProperties": false,
     },
     // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+    "IFidelidade": {
+        "dataType": "refObject",
+        "properties": {
+            "idFidelidade": {"dataType":"double","required":true},
+            "idCliente": {"dataType":"double","required":true},
+            "idEstabelecimento": {"dataType":"double","required":true},
+            "quantidadeReservas": {"dataType":"double","required":true},
+            "quantidadeCancelamentos": {"dataType":"string","required":true},
+            "createdAt": {"dataType":"datetime","required":true},
+            "updatedAt": {"dataType":"datetime","required":true},
+        },
+        "additionalProperties": false,
+    },
+    // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
     "IReserva": {
         "dataType": "refObject",
         "properties": {
@@ -89,8 +104,8 @@ const models: TsoaRoute.Models = {
             "idCliente": {"dataType":"double","required":true},
             "idEstabelecimento": {"dataType":"double","required":true},
             "valor": {"dataType":"string","required":true},
-            "dataReserva": {"dataType":"string","required":true},
-            "horaInicio": {"dataType":"string","required":true},
+            "dataReserva": {"dataType":"datetime","required":true},
+            "horaInicio": {"dataType":"datetime","required":true},
             "horaFim": {"dataType":"datetime","required":true},
             "qtdPessoas": {"dataType":"string","required":true},
         },
@@ -107,6 +122,28 @@ export function RegisterRoutes(app: express.Router) {
     //  NOTE: If you do not see routes for all of your controllers in this file, then you might not have informed tsoa of where to look
     //      Please look into the "controllerPathGlobs" config option described in the readme: https://github.com/lukeautry/tsoa
     // ###########################################################################################################
+        app.get('/avaliacoes/:estabelecimentoID',
+            function AvaliacaoController_getAvaliacaoEstabelecimento(request: any, response: any, next: any) {
+            const args = {
+                    estabelecimentoID: {"in":"path","name":"estabelecimentoID","required":true,"dataType":"any"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+            } catch (err) {
+                return next(err);
+            }
+
+            const controller = new AvaliacaoController();
+
+
+            const promise = controller.getAvaliacaoEstabelecimento.apply(controller, validatedArgs as any);
+            promiseHandler(controller, promise, response, undefined, next);
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
         app.post('/avaliacoes',
             function AvaliacaoController_criarAvaliacao(request: any, response: any, next: any) {
             const args = {
@@ -350,6 +387,8 @@ export function RegisterRoutes(app: express.Router) {
         app.get('/estabelecimentos',
             function EstablecimentoController_index(request: any, response: any, next: any) {
             const args = {
+                    cidade: {"in":"query","name":"cidade","required":true,"dataType":"string"},
+                    uf: {"in":"query","name":"uf","required":true,"dataType":"string"},
             };
 
             // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
@@ -431,6 +470,73 @@ export function RegisterRoutes(app: express.Router) {
 
 
             const promise = controller.deletarEstabelecimento.apply(controller, validatedArgs as any);
+            promiseHandler(controller, promise, response, undefined, next);
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.get('/fidelidade',
+            function FidelidadeController_index(request: any, response: any, next: any) {
+            const args = {
+                    idEstabelecimento: {"in":"query","name":"idEstabelecimento","required":true,"dataType":"double"},
+                    idCliente: {"in":"query","name":"idCliente","required":true,"dataType":"double"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+            } catch (err) {
+                return next(err);
+            }
+
+            const controller = new FidelidadeController();
+
+
+            const promise = controller.index.apply(controller, validatedArgs as any);
+            promiseHandler(controller, promise, response, undefined, next);
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.put('/fidelidade',
+            function FidelidadeController_atualizarFidelidade(request: any, response: any, next: any) {
+            const args = {
+                    requestBody: {"in":"body","name":"requestBody","required":true,"ref":"IFidelidade"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+            } catch (err) {
+                return next(err);
+            }
+
+            const controller = new FidelidadeController();
+
+
+            const promise = controller.atualizarFidelidade.apply(controller, validatedArgs as any);
+            promiseHandler(controller, promise, response, undefined, next);
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.delete('/fidelidade/:FidelidadeID',
+            function FidelidadeController_deletarFidelidade(request: any, response: any, next: any) {
+            const args = {
+                    FidelidadeID: {"in":"path","name":"FidelidadeID","required":true,"dataType":"double"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+            } catch (err) {
+                return next(err);
+            }
+
+            const controller = new FidelidadeController();
+
+
+            const promise = controller.deletarFidelidade.apply(controller, validatedArgs as any);
             promiseHandler(controller, promise, response, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa

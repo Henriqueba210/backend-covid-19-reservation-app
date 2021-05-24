@@ -11,7 +11,7 @@ export class ReservaController extends Controller {
       return await ReservaService.query().where('cliente_id', clienteID)
     } else {
       return await ReservaService.query()
-        .where('id_cliente', clienteID)
+        .where('idCliente', clienteID)
         .where('data_reserva', dataPesquisa)
     }
   }
@@ -39,8 +39,7 @@ export class ReservaController extends Controller {
 
   @Delete('/{reservaID}')
   async deletarReserva (@Path() reservaID: number) : Promise<string> {
-    if ((await ReservaService.query().where('id_reserva', reservaID))[0] === null) {
-      ReservaService.query().delete().where('id_reserva', reservaID)
+    if (await ReservaService.query().delete().where('id_reserva', reservaID) > 0) {
       return 'Reserva deletada com sucesso'
     } else {
       this.setStatus(404)

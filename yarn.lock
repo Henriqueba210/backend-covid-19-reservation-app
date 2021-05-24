@@ -2431,7 +2431,6 @@ __metadata:
     morgan: ^1.10.0
     mysql: ^2.18.1
     objection: ^2.2.15
-    swagger-autogen: ^2.7.9
     swagger-ui-express: ^4.1.6
     ts-jest: ^26.5.1
     ts-node: ^9.1.1
@@ -5717,7 +5716,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"json5@npm:2.x, json5@npm:^2.1.2, json5@npm:^2.2.0":
+"json5@npm:2.x, json5@npm:^2.1.2":
   version: 2.2.0
   resolution: "json5@npm:2.2.0"
   dependencies:
@@ -5812,8 +5811,8 @@ __metadata:
   linkType: hard
 
 "knex@npm:^0.95.4":
-  version: 0.95.4
-  resolution: "knex@npm:0.95.4"
+  version: 0.95.6
+  resolution: "knex@npm:0.95.6"
   dependencies:
     colorette: 1.2.1
     commander: ^7.1.0
@@ -5828,12 +5827,6 @@ __metadata:
     resolve-from: ^5.0.0
     tarn: ^3.0.1
     tildify: 2.0.0
-  peerDependencies:
-    mysql: ^2.18.1
-    mysql2: ^2.2.5
-    pg: ^8.5.1
-    sqlite3: ^5.0.0
-    tedious: ^11.0.5
   peerDependenciesMeta:
     mysql:
       optional: true
@@ -5847,7 +5840,7 @@ __metadata:
       optional: true
   bin:
     knex: bin/cli.js
-  checksum: a9805bcfc105384affb057c17ed5dc55b765c5736f20af2421d583ee9aa036f23c031af291d8cda3e4830dc1f952c1b884d33a46473fa96ed2dfd73711ab853c
+  checksum: c4d8cae48acae446fae25f6f7a2af0553bbab5817e747d2e14b67e5dccd6f044fbdafe9a603ebc8844a53300866a9c6ef290440f5a82ae016652c789a21a755c
   languageName: node
   linkType: hard
 
@@ -8167,16 +8160,6 @@ __metadata:
     has-flag: ^4.0.0
     supports-color: ^7.0.0
   checksum: 8b3b6d71ee298d7f9a3ff4bfb928bd037c0b691b01bdfebb77deb3384976cd78c180d564dc3689ce5fe254d323252f7064efa1364bf24ab81efa6b080e51eddb
-  languageName: node
-  linkType: hard
-
-"swagger-autogen@npm:^2.7.9":
-  version: 2.7.9
-  resolution: "swagger-autogen@npm:2.7.9"
-  dependencies:
-    deepmerge: ^4.2.2
-    json5: ^2.2.0
-  checksum: 527ed17b3923ee1021f850c4fb0c451f8a1aa6b1a60cb847ed1fb9ee97ac7efaedaeb1109b5aaa2f37724a3a40680ef83726cfef4d8cf73ab8970b1fb294660d
   languageName: node
   linkType: hard
 
