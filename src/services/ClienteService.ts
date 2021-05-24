@@ -5,6 +5,7 @@ export default class ClienteService extends BaseService implements ICliente {
   idCliente!: number
   nome!: string
   email!: string
+  senha!: string
   telefone?: string
   createdAt!: Date
   updatedAt!: Date

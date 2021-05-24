@@ -7,11 +7,11 @@ import { IReserva } from '@models/IReserva'
 export class ReservaController extends Controller {
   @Get('/cliente/{clienteID}')
   async getReservasByClienteID (@Path() clienteID: string, @Query() dataPesquisa?: Date): Promise<IReserva[]> {
-    if (dataPesquisa === null) {
-      return await ReservaService.query().where('cliente_id', clienteID)
+    if (dataPesquisa === null || dataPesquisa === undefined) {
+      return await ReservaService.query().where('id_cliente', clienteID)
     } else {
       return await ReservaService.query()
-        .where('idCliente', clienteID)
+        .where('id_cliente', clienteID)
         .where('data_reserva', dataPesquisa)
     }
   }

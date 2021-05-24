@@ -5,8 +5,8 @@ export default class AvaliacaoService extends BaseService implements IAvaliacao 
   idAvaliacao!: number
   idCliente!: number
   idEstabelecimento!: number
-  quantidadeReservas!: number
-  quantidadeCancelamentos!: string
+  avaliacao!: number
+  descricao!: string
   createdAt!: Date
   updatedAt!: Date
 

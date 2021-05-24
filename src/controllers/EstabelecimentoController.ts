@@ -9,7 +9,7 @@ export class EstablecimentoController extends Controller {
   async index (@Query() cidade: string, @Query() uf: string): Promise<IEstabelecimento[]> {
     const estabelecimentos: IEstabelecimento[] = await EstabelecimentoService.query()
       .where('endereco.cidade', cidade)
-      .where('endereco.uf', 'uf')
+      .where('endereco.uf', uf)
       .joinRelated('endereco')
 
     return estabelecimentos

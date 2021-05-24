@@ -7,12 +7,12 @@ import { IAvaliacao } from '@models/IAvaliacao'
 export class AvaliacaoController extends Controller {
   @Get('/estabelecimento/{estabelecimentoID}')
   async getAvaliacaoEstabelecimento (@Path() estabelecimentoID: number): Promise<IAvaliacao[]> {
-    return await AvaliacaoService.query().where('estabelecimento_id', estabelecimentoID)
+    return await AvaliacaoService.query().where('id_estabelecimento', estabelecimentoID)
   }
 
   @Get('/cliente/{clienteID}')
   async getAvaliacoesCliente (@Path() clienteID: number): Promise<IAvaliacao[]> {
-    return await AvaliacaoService.query().where('cliente_id', clienteID)
+    return await AvaliacaoService.query().where('id_cliente', clienteID)
   }
 
   @Post('/')

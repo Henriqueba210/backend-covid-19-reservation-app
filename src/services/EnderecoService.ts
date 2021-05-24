@@ -8,7 +8,7 @@ export default class EnderecoService extends BaseService implements IEndereco {
   bairro!: string
   cidade!: string
   uf!: string
-  pais!: Date
+  pais!: string
   cep!: string
   createdAt!: Date
   updatedAt!: Date

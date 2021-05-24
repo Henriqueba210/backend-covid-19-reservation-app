@@ -7,10 +7,11 @@ export default class EstabelecimentoService extends BaseService implements IEsta
   idEstabelecimento!: number
   idEndereco!: number
   endereco!: IEndereco
+  email!: string
   cnpj!: string
   senha!: string
   telefone!: string
-  lotacao!: string
+  lotacao!: number
   horaAbertura!: Date
   descricao?: string
   createdAt!: Date

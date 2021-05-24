@@ -6,7 +6,7 @@ export interface IFidelidade {
   idCliente: number
   idEstabelecimento: number
   quantidadeReservas: number
-  quantidadeCancelamentos: string
+  quantidadeCancelamentos: number
   createdAt: Date
   updatedAt: Date
 }

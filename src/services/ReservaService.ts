@@ -6,11 +6,14 @@ export default class ReservaService extends BaseService implements IReserva {
   idReserva!: number
   idCliente!: number
   idEstabelecimento!: number
+  status!: number
   valor!: string
   dataReserva!: Date
   horaInicio!: Date
   horaFim!: Date
   qtdPessoas!: string
+  createdAt!: Date
+  updatedAt!: Date
 
   static get tableName (): string {
     return 'reserva'

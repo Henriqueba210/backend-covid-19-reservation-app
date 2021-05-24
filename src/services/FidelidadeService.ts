@@ -7,7 +7,7 @@ export default class FidelidadeService extends BaseService implements IFidelidad
   idCliente!: number
   idEstabelecimento!: number
   quantidadeReservas!: number
-  quantidadeCancelamentos!: string
+  quantidadeCancelamentos!: number
   createdAt!: Date
   updatedAt!: Date
 

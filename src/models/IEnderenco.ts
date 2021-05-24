@@ -8,7 +8,7 @@ export interface IEndereco {
   bairro: string
   cidade: string
   uf: string
-  pais: Date
+  pais: string
   cep: string
   createdAt: Date
   updatedAt: Date

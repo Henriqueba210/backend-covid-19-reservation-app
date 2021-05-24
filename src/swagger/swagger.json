@@ -20,11 +20,11 @@
 						"type": "number",
 						"format": "double"
 					},
-					"quantidadeReservas": {
+					"avaliacao": {
 						"type": "number",
 						"format": "double"
 					},
-					"quantidadeCancelamentos": {
+					"descricao": {
 						"type": "string"
 					},
 					"createdAt": {
@@ -40,8 +40,8 @@
 					"idAvaliacao",
 					"idCliente",
 					"idEstabelecimento",
-					"quantidadeReservas",
-					"quantidadeCancelamentos",
+					"avaliacao",
+					"descricao",
 					"createdAt",
 					"updatedAt"
 				],
@@ -104,8 +104,7 @@
 						"type": "string"
 					},
 					"pais": {
-						"type": "string",
-						"format": "date-time"
+						"type": "string"
 					},
 					"cep": {
 						"type": "string"
@@ -157,7 +156,8 @@
 						"type": "string"
 					},
 					"lotacao": {
-						"type": "string"
+						"type": "number",
+						"format": "double"
 					},
 					"horaAbertura": {
 						"type": "string",
@@ -209,7 +209,8 @@
 						"format": "double"
 					},
 					"quantidadeCancelamentos": {
-						"type": "string"
+						"type": "number",
+						"format": "double"
 					},
 					"createdAt": {
 						"type": "string",
@@ -246,6 +247,10 @@
 						"type": "number",
 						"format": "double"
 					},
+					"status": {
+						"type": "number",
+						"format": "double"
+					},
 					"valor": {
 						"type": "string"
 					},
@@ -263,17 +268,28 @@
 					},
 					"qtdPessoas": {
 						"type": "string"
+					},
+					"createdAt": {
+						"type": "string",
+						"format": "date-time"
+					},
+					"updatedAt": {
+						"type": "string",
+						"format": "date-time"
 					}
 				},
 				"required": [
 					"idReserva",
 					"idCliente",
 					"idEstabelecimento",
+					"status",
 					"valor",
 					"dataReserva",
 					"horaInicio",
 					"horaFim",
-					"qtdPessoas"
+					"qtdPessoas",
+					"createdAt",
+					"updatedAt"
 				],
 				"type": "object",
 				"additionalProperties": false
