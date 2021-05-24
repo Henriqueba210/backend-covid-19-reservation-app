@@ -287,7 +287,7 @@
 	},
 	"openapi": "3.0.0",
 	"paths": {
-		"/avaliacoes/{estabelecimentoID}": {
+		"/avaliacoes/estabelecimento/{estabelecimentoID}": {
 			"get": {
 				"operationId": "GetAvaliacaoEstabelecimento",
 				"responses": {
@@ -315,7 +315,43 @@
 						"name": "estabelecimentoID",
 						"required": true,
 						"schema": {
-							"type": "string"
+							"format": "double",
+							"type": "number"
+						}
+					}
+				]
+			}
+		},
+		"/avaliacoes/cliente/{clienteID}": {
+			"get": {
+				"operationId": "GetAvaliacoesCliente",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"items": {
+										"$ref": "#/components/schemas/IAvaliacao"
+									},
+									"type": "array"
+								}
+							}
+						}
+					}
+				},
+				"tags": [
+					"Avaliacoes"
+				],
+				"security": [],
+				"parameters": [
+					{
+						"in": "path",
+						"name": "clienteID",
+						"required": true,
+						"schema": {
+							"format": "double",
+							"type": "number"
 						}
 					}
 				]
@@ -392,8 +428,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"type": "number",
-									"format": "double"
+									"type": "string"
 								}
 							}
 						}
@@ -510,8 +545,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"type": "number",
-									"format": "double"
+									"type": "string"
 								}
 							}
 						}
@@ -628,8 +662,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"type": "number",
-									"format": "double"
+									"type": "string"
 								}
 							}
 						}
@@ -763,8 +796,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"type": "number",
-									"format": "double"
+									"type": "string"
 								}
 							}
 						}
@@ -870,8 +902,7 @@
 						"content": {
 							"application/json": {
 								"schema": {
-									"type": "number",
-									"format": "double"
+									"type": "string"
 								}
 							}
 						}

@@ -5,12 +5,12 @@ import { IAvaliacao } from '@models/IAvaliacao'
 @Route('avaliacoes')
 @Tags('Avaliacoes')
 export class AvaliacaoController extends Controller {
-  @Get('/{estabelecimentoID}')
+  @Get('/estabelecimento/{estabelecimentoID}')
   async getAvaliacaoEstabelecimento (@Path() estabelecimentoID: number): Promise<IAvaliacao[]> {
     return await AvaliacaoService.query().where('estabelecimento_id', estabelecimentoID)
   }
 
-  @Get('/{clienteID}')
+  @Get('/cliente/{clienteID}')
   async getAvaliacoesCliente (@Path() clienteID: number): Promise<IAvaliacao[]> {
     return await AvaliacaoService.query().where('cliente_id', clienteID)
   }

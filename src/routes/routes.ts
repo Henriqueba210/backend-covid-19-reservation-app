@@ -122,10 +122,10 @@ export function RegisterRoutes(app: express.Router) {
     //  NOTE: If you do not see routes for all of your controllers in this file, then you might not have informed tsoa of where to look
     //      Please look into the "controllerPathGlobs" config option described in the readme: https://github.com/lukeautry/tsoa
     // ###########################################################################################################
-        app.get('/avaliacoes/:estabelecimentoID',
+        app.get('/avaliacoes/estabelecimento/:estabelecimentoID',
             function AvaliacaoController_getAvaliacaoEstabelecimento(request: any, response: any, next: any) {
             const args = {
-                    estabelecimentoID: {"in":"path","name":"estabelecimentoID","required":true,"dataType":"any"},
+                    estabelecimentoID: {"in":"path","name":"estabelecimentoID","required":true,"dataType":"double"},
             };
 
             // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
@@ -141,6 +141,28 @@ export function RegisterRoutes(app: express.Router) {
 
 
             const promise = controller.getAvaliacaoEstabelecimento.apply(controller, validatedArgs as any);
+            promiseHandler(controller, promise, response, undefined, next);
+        });
+        // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+        app.get('/avaliacoes/cliente/:clienteID',
+            function AvaliacaoController_getAvaliacoesCliente(request: any, response: any, next: any) {
+            const args = {
+                    clienteID: {"in":"path","name":"clienteID","required":true,"dataType":"double"},
+            };
+
+            // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
+
+            let validatedArgs: any[] = [];
+            try {
+                validatedArgs = getValidatedArgs(args, request, response);
+            } catch (err) {
+                return next(err);
+            }
+
+            const controller = new AvaliacaoController();
+
+
+            const promise = controller.getAvaliacoesCliente.apply(controller, validatedArgs as any);
             promiseHandler(controller, promise, response, undefined, next);
         });
         // WARNING: This file was auto-generated with tsoa. Please do not modify it. Re-run tsoa to re-generate this file: https://github.com/lukeautry/tsoa
